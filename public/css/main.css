@@ -1,0 +1,31 @@
+.owl-carousel .owl-prev, 
+.owl-carousel .owl-next {
+    position: absolute !important;
+    top: 40%;
+    background-color: black !important;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+}
+
+.owl-carousel .owl-prev span, 
+.owl-carousel .owl-next span {
+    display: block;
+    margin-top: -20px;
+}
+
+.owl-prev {
+    left: 0px !important;
+    font-size: 40px !important;
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.owl-next {
+    right: 0px !important;
+    font-size: 40px !important;
+    color: #fff !important;
+    border: none !important;
+    outline: none !important;
+}
