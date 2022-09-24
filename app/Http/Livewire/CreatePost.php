@@ -30,8 +30,7 @@ class CreatePost extends Component
             'images.required' => 'Agrega al menos una imagen'
         ]);
 
-        $publicacion = Post::create([
-            'user_id' => Auth::user()->id,
+        $publicacion = Auth::user()->posts()->create([
             'body' => trim($this->body),
         ]);
         

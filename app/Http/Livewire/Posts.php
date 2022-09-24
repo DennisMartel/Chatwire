@@ -16,9 +16,29 @@ class Posts extends Component
         $this->emit('loadOwlCarousel');
     }
     
-    public function toggleLike()
+    public function toggleLike($publicacionId)
     {
-        
+        $publicacion = Post::find($publicacionId);
+
+        if (!$publicacion) 
+        {
+            $this->emit('alert', 'Lo sentimos, no se ha encontrado coincidencias con la publicación');    
+        }
+
+        if (!Auth::user()->isFriendsWith($publicacion->user)) 
+        {
+            $this->emit('alert', 'Lo sentimos, para reaccionar a la publicación debes de ser amigo con ' . Auth::user()->name);        
+        }
+
+        if (Auth::user()->hasLikedPost($publicacion) == true) 
+        {
+            return;
+        } 
+
+        $publicacion->likes()->create([
+            'user_id' => Auth::user()->id
+        ]);
+
     }
 
     public function render()

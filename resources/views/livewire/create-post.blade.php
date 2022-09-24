@@ -5,7 +5,7 @@
             @error('body')
                 <span class="text-red-600 text-xs">{{ $message }}</span>
             @enderror
-            <x-jet-label for="body" value="¿Qué estás pensando?" class="absolute top-0 left-2 text-gray-500 font-semibold text-xxs pl-1 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm transition-all pointer-events-none"/>
+            <x-jet-label for="body" value="¿Qué estás pensando {{ Auth::user()->name }}?" class="absolute top-0 left-2 text-gray-500 font-semibold text-xxs pl-1 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm transition-all pointer-events-none"/>
         </div>
         <x-jet-input type="file" wire:model.defer="images" accept="image/*" multiple class="bg-gray-100 outline-none border-none mt-3" />
         @error('images')

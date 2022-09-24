@@ -64,27 +64,38 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SocialProfile::class);
     }
 
-    // Este metodo me retorna mi lista de amigos
     public function friendsOfMine()
     {
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')->wherePivot('accepted', true);    
     }
 
-    // Este metodo me retorna las personas del cual soy amigo
     public function friendOf()
     {
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')->wherePivot('accepted', true);
     }
 
-    // Este metodo me retorna todas la personas que tengo agregada a mi lista de amigos 
-    // y tambien de las personas del cual soy amigo cuando la solicitud ha sido aceptada
     public function friends()
     {
         return $this->friendsOfMine()->get()->merge($this->friendOf()->get());
     }
 
+    public function isFriendsWith(User $user)
+    {
+        return (bool) $this->friends()->where('id', $user->id)->count();
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
     public function hasLikedPost(Post $post)
     {
         return (bool) $post->likes()->where('user_id', $this->id)->count();
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'user_id');
     }
 }

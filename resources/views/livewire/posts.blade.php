@@ -42,7 +42,7 @@
                             }
                         }"
                     >
-                        <a @click.prevent="toggleLike; $wire.toggleLike()" class="cursor-pointer" :class="isLiked ? 'text-red-600' : 'text-gray-600'">
+                        <a @click.prevent="toggleLike; $wire.toggleLike({{ $publicacion->id }})" class="cursor-pointer" :class="isLiked ? 'text-red-600' : 'text-gray-600'">
                             <i :class="isLiked ? 'fas' : 'far'" class="fa-heart"></i>
                         </a>
                         <div class="font-bold text-sm ml-2"><span x-text="likeCount"></span> Me gusta</div>
