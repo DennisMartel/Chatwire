@@ -71,7 +71,7 @@
     <div x-data="{
         observe() {
             const observer = new IntersectionObserver((publicaciones) => {
-                publicaciones.forEach(publicacion => {
+                publicaciones.map(publicacion => {
                     if(publicacion.isIntersecting)
                     {
                         @this.loadMorePosts()

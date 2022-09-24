@@ -98,4 +98,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Like::class, 'user_id');
     }
+
+    public function addLike(Post $post)
+    {
+        return $post->likes()->create(['user_id' => $this->id]);
+    }
+
+    public function deleteLike(Post $post)
+    {
+        return $post->likes()->where('user_id', $this->id)->delete();
+    }
 }

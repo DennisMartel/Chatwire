@@ -10,6 +10,8 @@ class Posts extends Component
 {
     public $perPage = 1;
 
+    protected $listeners = ['render'];
+
     public function loadMorePosts()
     {
         $this->perPage += 1;
@@ -32,13 +34,14 @@ class Posts extends Component
 
         if (Auth::user()->hasLikedPost($publicacion) == true) 
         {
-            return;
+            Auth::user()->deleteLike($publicacion);
         } 
+        else 
+        {
+            Auth::user()->addLike($publicacion);
+        }
 
-        $publicacion->likes()->create([
-            'user_id' => Auth::user()->id
-        ]);
-
+        $this->emitTo('posts', 'render');
     }
 
     public function render()
