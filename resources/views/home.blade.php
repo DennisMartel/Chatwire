@@ -23,6 +23,7 @@
                         </div>
                     </div>
                     <div class="mt-8">
+                        <p class="font-semibold text-gray-700 mb-2 text-sm">Sugerencias</p>
                         @foreach ($personas as $persona)
                             <div class="flex flex-row {{ $loop->last ? '' : 'mb-4' }}">
                                 <a href="">
