@@ -3,7 +3,7 @@
         <div class="flex flex-row py-2 items-center">
             <div class="basis-1/2 pl-3 lg:p-0">
                 <a href="/">
-                    <h1 class="text-2xl font-semibold">Test</h1>
+                    <h1 class="text-2xl font-semibold">Chatwire</h1>
                 </a>
             </div>
 
