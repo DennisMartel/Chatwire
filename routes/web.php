@@ -2,15 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 
 Route::get('login/{driver}', [SocialAuthController::class, 'redirectToProvider']);
 Route::get('login/{driver}/callback', [SocialAuthController::class, 'handleProviderCallback']);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/', HomeController::class)->name('home');
     Route::resource('posts', PostController::class);
 });
 

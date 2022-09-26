@@ -22,6 +22,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mt-8">
+                        @foreach ($personas as $persona)
+                            <div class="flex flex-row">
+                                <a href="">
+                                    <img src="{{ $persona->profile_photo_url }}" alt="{{ $persona->name }}" class="rounded-full object-cover w-11 h-11 border-2">
+                                </a>
+                                <div class="pl-2">
+                                    <div class="text-sm font-medium">
+                                        <a href="#" class="truncate">
+                                            {{ $persona->name }}
+                                        </a>
+                                    </div>
+                                    <a class="text-blue-500 text-sm font-bold cursor-pointer">Enviar solicitud</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
