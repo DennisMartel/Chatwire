@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="h-screen bg-gray-100 flex flex-col justify-center items-center">
         <div class="bg-white mb-3 border border-gray-300 w-80 pt-8 pb-4 flex flex-col items-center">
-            <h1 class="text-2xl font-semibold">Test</h1>
+            <h1 class="text-2xl font-semibold">Chatwire</h1>
             <form method="POST" action="{{ route('login') }}" class="w-64 flex flex-col gap-1 mt-8">
                 @csrf
                 <div class="relative">
