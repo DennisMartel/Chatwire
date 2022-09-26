@@ -24,7 +24,7 @@
                     </div>
                     <div class="mt-8">
                         @foreach ($personas as $persona)
-                            <div class="flex flex-row">
+                            <div class="flex flex-row {{ $loop->last ? '' : 'mb-4' }}">
                                 <a href="">
                                     <img src="{{ $persona->profile_photo_url }}" alt="{{ $persona->name }}" class="rounded-full object-cover w-11 h-11 border-2">
                                 </a>
