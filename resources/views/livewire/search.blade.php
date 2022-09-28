@@ -12,7 +12,6 @@
                             <img src="{{ Storage::url($resultado->profile_photo_path) }}" alt="{{ $resultado->name }}" class="rounded-full object-cover h-11 w-11">
                             <div class="flex flex-col pl-4">
                                 <p class="text-sm font-bold">{{ $resultado->name }}</p>
-                                <span class="leading-4 text-xs font-semibold text-gray-600">{{ $resultado->email }}</span>
                             </div>
                         </a>
                     </li>
