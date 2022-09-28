@@ -65,6 +65,27 @@
                     loadOwlcarousel();
                 });
             });
+
+            Livewire.on('showAlertRemovePost', id => {
+                Swal.fire({
+                    title: '',
+                    text: "{{ Auth::user()->name }} estás seguro de borrar la publicación",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, deseo borrarla!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('posts', 'removePost', id)
+                        Swal.fire(
+                            '',
+                            'La publicación ha sido eliminada.',
+                            'success'
+                        )
+                    }
+                })
+            })
         </script>
     @endpush
 </x-app-layout>

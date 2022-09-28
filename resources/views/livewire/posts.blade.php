@@ -20,7 +20,7 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-jet-dropdown-link class="align-middle" href="{{ route('profile.show') }}">
+                                <x-jet-dropdown-link class="align-middle cursor-pointer" wire:click="$emit('showAlertRemovePost', {{ $publicacion->id }})">
                                     <i class="fas fa-trash-alt mr-1"></i> Borrar
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('posts.edit', $publicacion) }}">

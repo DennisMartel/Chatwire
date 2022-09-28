@@ -4,17 +4,21 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Posts extends Component
 {
-    public $perPage = 1;
+    use AuthorizesRequests;
 
-    protected $listeners = ['render'];
+    public $perPage = 10;
+
+    protected $listeners = ['render', 'removePost'];
 
     public function loadMorePosts()
     {
-        $this->perPage += 1;
+        $this->perPage += 5;
         $this->emit('loadOwlCarousel');
     }
     
@@ -42,6 +46,28 @@ class Posts extends Component
         }
 
         $this->emitTo('posts', 'render');
+    }
+
+    public function removePost($publicacionId)
+    {
+        $publicacion = Post::find($publicacionId);
+
+        $this->authorize('myPost', $publicacion);
+
+        $imagenesActuales = $publicacion->images()->pluck('url');
+            
+        foreach ($imagenesActuales as $imagenActual) 
+        {
+            Storage::delete($imagenActual);
+        }
+
+        $publicacion->images()->delete();
+
+        $publicacion->delete();
+        
+        $this->emitTo('posts', 'render');
+
+        $this->emit('loadOwlCarousel');
     }
 
     public function render()

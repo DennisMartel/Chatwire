@@ -8,7 +8,6 @@ use Livewire\WithFileUploads;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
-use Illuminate\Support\Str;
 
 class EditPost extends Component
 {
