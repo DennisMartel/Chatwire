@@ -30,7 +30,9 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        //
+        $this->authorize('myPost', $post);
+        
+        return view('posts.edit', compact('post'));
     }
 
     public function update(UpdatePostRequest $request, Post $post)

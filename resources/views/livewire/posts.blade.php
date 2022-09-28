@@ -10,11 +10,26 @@
                         </span>
                     </a>
                 </div>
-                <div>
-                    <a class="cursor-pointer">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </a>
-                </div>
+                @can('myPost', $publicacion)
+                    <div class="relative">
+                        <x-jet-dropdown width="48">
+                            <x-slot name="trigger">
+                                <a class="cursor-pointer">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </a>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <x-jet-dropdown-link class="align-middle" href="{{ route('profile.show') }}">
+                                    <i class="fas fa-trash-alt mr-1"></i> Borrar
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('posts.edit', $publicacion) }}">
+                                    <i class="fas fa-edit mr-1"></i> Editar
+                                </x-jet-dropdown-link>
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </div>
+                @endcan
             </div>
             <div class="owl-carousel owl-theme" wire:ignore>
                 @foreach ($publicacion->images->pluck('url') as $image)

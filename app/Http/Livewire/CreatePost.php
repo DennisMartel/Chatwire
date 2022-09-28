@@ -26,7 +26,7 @@ class CreatePost extends Component
             'body' => 'required',
             'images' => 'required'
         ], [
-            'body.required' => 'Agrega un breve descripción de tu publicación',
+            'body.required' => 'Agrega una breve descripción de tu publicación',
             'images.required' => 'Agrega al menos una imagen'
         ]);
 
