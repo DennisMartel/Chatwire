@@ -53,7 +53,8 @@ class SocialAuthController extends Controller
                 {
                     $user = User::create([
                         'name' => $userSocialite->getName(),
-                        'email' => $userSocialite->getEmail()
+                        'email' => $userSocialite->getEmail(),
+                        'uid' => uniqid(true),
                     ]);
                 }
     

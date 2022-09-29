@@ -45,7 +45,7 @@
                             </x-slot>
     
                             <x-slot name="content">
-                                <x-jet-dropdown-link class="align-middle" href="{{ route('profile.show') }}">
+                                <x-jet-dropdown-link class="align-middle" href="{{ route('profile.index', Auth::user()) }}">
                                     <i class="far fa-user-circle mr-1"></i> Perfil
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('profile.show') }}">

@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'uid',
     ];
 
     /**
@@ -58,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'uid';
+    }
 
     public function socialProfiles()
     {
