@@ -3,7 +3,7 @@
         <div class="bg-white rounded-lg shadow-md mb-8">
             <div class="p-3 flex flex-row items-center">
                 <div class="flex-1">
-                    <a href="">
+                    <a href="{{ route('profile.index', $publicacion->user) }}">
                         <img src="{{ $publicacion->user->profile_photo_url ?? asset('images/defaul-pic.webp') }}" alt="Avatar" class="rounded-full w-8 h-8 inline">
                         <span class="font-bold text-sm ml-2">
                             {{ $publicacion->user->name }}
