@@ -63,6 +63,8 @@ class Posts extends Component
 
         $publicacion->images()->delete();
 
+        $publicacion->likes()->delete();
+
         $publicacion->delete();
         
         $this->emitTo('posts', 'render');
