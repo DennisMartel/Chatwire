@@ -8,7 +8,7 @@
             <ul>
                 @forelse ($this->resultados as $resultado)
                     <li class="hover:bg-gray-100 w-full">
-                        <a href="{{ route('profile.index', $resultado) }}" class="flex flex-row items-center p-2">
+                        <a href="#" class="flex flex-row items-center p-2">
                             <img src="{{ $resultado->profile_photo_url }}" alt="{{ $resultado->name }}" class="rounded-full object-cover h-11 w-11">
                             <div class="flex flex-col pl-4">
                                 <p class="text-sm font-bold">{{ $resultado->name }}</p>
