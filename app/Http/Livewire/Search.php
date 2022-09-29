@@ -17,7 +17,7 @@ class Search extends Component
 
     public function getResultadosProperty()
     {
-        return User::select('name', 'email', 'profile_photo_path')
+        return User::select('name', 'email', 'profile_photo_url')
             ->where('id', '!=', Auth::user()->id)
             ->where('name', 'LIKE', '%'. $this->search . '%')
             ->inRandomOrder()->take(15)->get();
