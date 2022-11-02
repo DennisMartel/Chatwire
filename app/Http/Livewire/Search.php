@@ -18,6 +18,7 @@ class Search extends Component
     public function getResultadosProperty()
     {
         return User::where('id', '!=', Auth::user()->id)
+            ->whereNotIn('id', Auth::user()->friends()->pluck('id'))
             ->where('name', 'LIKE', '%'. $this->search . '%')
             ->inRandomOrder()->take(15)->get();
     }

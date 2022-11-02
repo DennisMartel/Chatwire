@@ -18,11 +18,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
         'name',
         'email',
@@ -30,11 +25,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'uid',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -42,20 +32,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
     protected $appends = [
         'profile_photo_url',
     ];
@@ -70,19 +50,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SocialProfile::class);
     }
 
+    // funciones para solicitud de amistad y amigos
     public function friendsOfMine()
     {
-        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')->wherePivot('accepted', true);    
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');    
     }
 
     public function friendOf()
     {
-        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')->wherePivot('accepted', true);
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
     public function friends()
     {
-        return $this->friendsOfMine()->get()->merge($this->friendOf()->get());
+        return $this->friendsOfMine()->wherePivot('accepted', true)->get()
+            ->merge($this->friendOf()->wherePivot('accepted', true)->get());
     }
 
     public function isFriendsWith(User $user)
@@ -90,6 +72,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return (bool) $this->friends()->where('id', $user->id)->count();
     }
 
+    public function friendRequestPending()
+    {
+        return $this->friendOf()->wherePivot('accepted', false)->get();
+    }
+
+    public function hasFriendRequestPending(User $user)
+    {
+        return (bool) $this->friendRequestPending()->where('id', $user->id)->count();
+    }
+
+    public function addFriend(User $user)
+    {
+        $this->friendOf()->attach($user->id);
+    }
+
+    // funciones para publicaciones y likes
     public function posts()
     {
         return $this->hasMany(Post::class, 'user_id');
